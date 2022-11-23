@@ -1,0 +1,14 @@
+
+var time= new Date();
+
+
+
+const btn=document.getElementById("btn1");
+
+document.getElementById("time").innerHTML=time;
+
+btn.addEventListener('click',()=>{
+
+    document.getElementById("time").innerHTML="${time}"
+
+});

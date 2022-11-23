@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Login Page
+        block style 
+        link(rel="stylesheet", href="../public/login.css") 
+
+
+    body
+        nav#navbar          
+                ul 
+                    li  #[a(href="/") Home]                  
+                    li  #[a(href="/login") Admin Login]           
+                    //- li  #[a(href="/") Services]         
+                    //- li  #[a(href="/") About Us]         
+                    li  #[a(href="/bookap") Book Appointment]  
+        div.mycontact 
+            h1 Admin login 
+            #main  
+            
+                form.item(action="/login" method="POST") 
+                    input(type="email" name="emaillogin" placeholder="enter your email")
+                    input(type="password" name="passwordlogin" placeholder="enter your password" class="item") 
+
+                    button#btn(class="btn") 
+                         | submit    
+
+            p.item#fail_msg=fail_message    
+
+        footer 
+            copyrights @copy 2022 all rights resreved by team       

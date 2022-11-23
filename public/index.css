@@ -1,0 +1,120 @@
+h1{
+    color:black;
+}
+
+#signup{
+    margin: 20px;
+}
+
+nav{
+    width:100h
+}
+
+body{
+    background-color:rgb(198, 228, 228);
+}
+
+
+#navbar{
+    background-color: rgb(1, 1, 0);
+    position: sticky;
+    top:0px;
+    left: 0px;
+    margin-bottom: 0px;
+    margin-left: -10px;
+    margin-right: -12px;
+}
+
+#navbar ul{
+    display:flex;
+    flex-direction: row; 
+    margin-top: -12px;  
+}
+
+#navbar ul li{
+    margin: 11px 12px;
+    font-size: 20px;
+    padding: 8px 6px;
+    list-style: none;
+}
+
+#navbar ul li a{
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+   text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+
+#navbar ul li a:hover{
+    color:black;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+
+#janseva{
+
+    text-align: center;
+
+}
+
+#heading{
+    text-align: center;
+    align-items: center;
+    background: url(../public/bk3.png)  center/cover ;
+
+        height: 40vh;
+        margin-top: 5px;
+    box-shadow: 6px 5px 4px;
+    color: white;
+    
+}
+p #photocontent{
+    align-items: center;
+    
+    height: 200px;
+}
+
+#bookap{
+    text-align: center;
+    align-items: center;
+    padding: 5px 5px;
+}
+
+#details{
+
+    width: 30vw;
+
+
+}
+
+#bookap a{
+    background-color:  blue;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    margin: 2px 5px;
+    padding: 6px 6px;
+    
+}
+
+
+ 
+#bookap a:hover{
+    /* color: rgb(0, 0, 0); */
+    background-color: blueviolet;
+    box-shadow: 4px 4px 3px rgb(88, 85, 85) ;
+    
+}
+
+
+footer{
+    color: wheat;
+    background-color: black;
+    height: 50px;
+    text-align: center;
+}
+
