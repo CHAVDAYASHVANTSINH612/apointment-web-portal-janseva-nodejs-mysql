@@ -95,22 +95,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
     var sql_row_count = `SELECT COUNT(*) FROM adhar`;
 
     var sql_if_timeslot_full = ` SELECT COUNT(*) FROM ${reason}${day}${month}${year}${time} `;
-    //  var sql_table_exists=`SELECT COUNT(*)
-    //  FROM 
-    //     information_schema.TABLES 
-    //  WHERE 
-    //     TABLE_SCHEMA LIKE 'hello_db' AND 
-    //      TABLE_NAME = '${reason}${date}${time}'; `
-
-
-    // create table if not exist syntax :
-    // CREATE TABLE IF NOT EXISTS `test` (
-    //     `id` int(11) NOT NULL,
-    //     `name` varchar(50) NOT NULL,
-    //     `address` int(11) NOT NULL,
-    //     `phone` int(11) NOT NULL,
-    //     PRIMARY KEY (`id`)
-    //   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    
 
     var sql_create_table = `CREATE TABLE IF NOT EXISTS   ${reason}${day}${month}${year}${time}(id INT NOT NULL AUTO_INCREMENT, reason VARCHAR(35),date  VARCHAR(35) , time INT, name VARCHAR(35) NOT NULL,phone VARCHAR(15), email VARCHAR(35),message VARCHAR(255),bookdate VARCHAR(20),PRIMARY KEY (id) )ENGINE=InnoDB DEFAULT CHARSET=latin1`;
 
@@ -118,41 +103,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
     var sql_insert = `  INSERT INTO ${reason}${day}${month}${year}${time}(reason,date,time,name,phone,email,message,bookdate) VALUES('${reason}','${day}-${month}-${year}','${time}','${name1}','${phone}','${email}','${message}','${b_date}')`;
     var sql_timeslot_full = `SELECT COUNT(*) FROM electioncard WHERE date='${day}-${month}-${year}' AND time='${time}'`
 
-    //   db.query(sql_timeslot_full,(err,result)=>{
-    //     if(err) throw err;
-    //      else{
-
-
-    //         if(result.length<=16){
-
-    //             db.query(sql_insert,(err,result)=>{
-    //                  if(err) throw err;
-    //                  else{
-
-
-    //                   console.log(result);
-
-    //                      console.log(`data inserted your appointment is booked for ${reason} on date ${date} time: ${time} `);
-    //                     res.send(`data inserted your appointment is booked for ${reason} on date: ${date} time around: ${time} `);
-
-    //                     }
-
-    //             });
-
-    //         }
-    //         else{
-
-
-    //      res.send('time slots are full')
-
-
-    //         }
-
-
-
-
-    //      }
-    // });
+   
 
 
     if (name1.length != 0) {
@@ -182,9 +133,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
 
                                     console.log(result);
 
-                                    //  console.log(`data inserted your appointment is booked for ${reason} on date ${day}-${month}-${year} time: ${time} `);
-                                    // res.send(`data inserted your appointment is booked for ${reason} on date: ${day}-${month}-${year} time around: ${time} `, );
-
+                                   
                                     var succes_msg = ` data inserted succesfully , your appointment is booked for ${reason} on date: ${day}-${month}-${year} time around: ${time}`;
 
                                     res.render('bookap', { 'success_message': succes_msg })
@@ -232,77 +181,6 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
     }
 
 
-    //    db.query(sql_table_exists,(err,result)=>{
-
-    //     //  if(err) throw err; 
-    //     //  else{
-
-    //                if(result == 0){
-    //                    console.log('you are in 0');
-
-    //                  db.query(sql_create_table,(err,result)=>{
-
-    //                     if(err)     throw err;
-    //                     else{
-    //                         console.log(`new table created ${reason}${date}${time} `);
-    //                         db.query(sql_insert,(err,result)=>{
-    //                             if(err) throw err;
-    //                              else{
-    //                                       console.log(result);
-
-    //                                       console.log(`data inserted your appointment is booked for ${reason} on date ${date} time: ${time} `);
-    //                            res.send(`data inserted your appointment is booked for ${reason} on date ${date} time around: ${time} `);
-    //                              }
-    //                         });
-
-
-    //                      }
-
-    //                db.query(sql_insert,(err,result)=>{
-
-
-    //                 // });
-
-    //             });
-
-
-    //         });
-    //     }
-    //         else{
-
-    //           db.query(sql_row_count,(err,result)=>{
-
-    //             // if(err) throw err;
-    //             // else{
-    //                 if(result<11){
-    //                     db.query(sql_insert,(err,result)=>{
-
-    //                         res.send(`data inserted your appointment is booked for ${reason} on date ${date} time: ${time} `);
-
-
-    //                     });
-    //                 }
-    //                 else{
-    //                         res.send('timeslot is full')
-
-    //                 }
-    //             // }
-
-
-
-
-    //           });
-
-
-
-
-    //         }
-
-    //     // }
-
-
-    //       });
-
 });
 
 
@@ -342,7 +220,7 @@ app.post('/showdata', function (req, res) {
     })
 
     // Do the query to get data.
-    // db.query(`SELECT * FROM adhar WHERE date='${selectedday}-${selectedmonth}-${selectedyear}'`, function(err, rows, fields) {
+    
     db.query(`SELECT * FROM ${selectedreason}${selectedday}${selectedmonth}${selectedyear}${selectedtime}`, function (err, rows, fields) {
         if (err) {
             //   res.status(500).json({"status_code": 500,"status_message": "internal server error"});
@@ -417,11 +295,7 @@ app.post('/register', (req, res) => {
 
         db.query(search_query, (err, result) => {
 
-            // if(result != email1){
-            //     db.query(`INSERT INTO user (email,password) VALUES('${email1}','${password1}')`,(err,result)=>{
-            //         res.send('data inserted');
-            //     });
-            // }
+           
 
             if (result.length != 0) {
 
@@ -516,48 +390,10 @@ app.post('/login', (req, res) => {
 
 
 
-app.get('/details', function (req, res) {
-
-    // db.query('SELECT * From user', function (error,rows) {
-    // //  if (error) throw error;
-    // //  console.log('The solution is: ', results);
-
-    // //   res.render('details', {
-    // //     title: 'Details - Pug ExpressJS NodeJS Tutorial',
-    // //     users: results
-    // //   });
-
-    // // });
-
-    // res.render('profile', { data: rows });
-
-    // });
-});
 
 
-app.get('/data', (req, res) => {
-
-    const db = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "hello_db"
-
-    })
-
-    db.query('SELECT * From user', (error, results, fields) => {
-
-        res.render('index', {
-            title: 'Details - Pug ExpressJS NodeJS Tutorial',
-            users: fields
-        });
-        console.log(results);
 
 
-    })
-
-
-});
 
 
 
