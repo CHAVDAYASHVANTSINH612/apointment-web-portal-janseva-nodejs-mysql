@@ -134,7 +134,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
                                     console.log(result);
 
                                    
-                                    var succes_msg = ` data inserted succesfully , your appointment is booked for ${reason} on date: ${day}-${month}-${year} time around: ${time}`;
+                                    var succes_msg = ` data inserted successfully  , your appointment is booked for ${reason} on date: ${day}-${month}-${year} time around: ${time}`;
 
                                     res.render('bookap', { 'success_message': succes_msg })
 
