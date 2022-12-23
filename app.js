@@ -7,7 +7,7 @@ const bodyparser = require("body-parser");  // it is needed when you have to gat
 
 const { get } = require('http');
 
-src = "https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js";
+// src = "https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js";
 
 // new Date object
 let b_date = new Date();
@@ -92,10 +92,10 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
 
 
 
-    var sql_row_count = `SELECT COUNT(*) FROM adhar`;
+    // var sql_row_count = `SELECT COUNT(*) FROM adhar`;
 
-    var sql_if_timeslot_full = ` SELECT COUNT(*) FROM ${reason}${day}${month}${year}${time} `;
-    
+    // var sql_if_timeslot_full = ` SELECT COUNT(*) FROM ${reason}${day}${month}${year}${time} `;
+
 
     var sql_create_table = `CREATE TABLE IF NOT EXISTS   ${reason}${day}${month}${year}${time}(id INT NOT NULL AUTO_INCREMENT, reason VARCHAR(35),date  VARCHAR(35) , time INT, name VARCHAR(35) NOT NULL,phone VARCHAR(15), email VARCHAR(35),message VARCHAR(255),bookdate VARCHAR(20),PRIMARY KEY (id) )ENGINE=InnoDB DEFAULT CHARSET=latin1`;
 
@@ -103,7 +103,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
     var sql_insert = `  INSERT INTO ${reason}${day}${month}${year}${time}(reason,date,time,name,phone,email,message,bookdate) VALUES('${reason}','${day}-${month}-${year}','${time}','${name1}','${phone}','${email}','${message}','${b_date}')`;
     var sql_timeslot_full = `SELECT COUNT(*) FROM electioncard WHERE date='${day}-${month}-${year}' AND time='${time}'`
 
-   
+
 
 
     if (name1.length != 0) {
@@ -133,7 +133,7 @@ app.post('/bookap', (req, res) => {      // same as '/contact' in contact.pug fo
 
                                     console.log(result);
 
-                                   
+
                                     var succes_msg = ` data inserted successfully  , your appointment is booked for ${reason} on date: ${day}-${month}-${year} time around: ${time}`;
 
                                     res.render('bookap', { 'success_message': succes_msg })
@@ -220,7 +220,7 @@ app.post('/showdata', function (req, res) {
     })
 
     // Do the query to get data.
-    
+
     db.query(`SELECT * FROM ${selectedreason}${selectedday}${selectedmonth}${selectedyear}${selectedtime}`, function (err, rows, fields) {
         if (err) {
             //   res.status(500).json({"status_code": 500,"status_message": "internal server error"});
@@ -295,7 +295,7 @@ app.post('/register', (req, res) => {
 
         db.query(search_query, (err, result) => {
 
-           
+
 
             if (result.length != 0) {
 
@@ -356,7 +356,7 @@ app.post('/login', (req, res) => {
     var sql3 = `SELECT password FROM user WHERE email = '${emaillogin}'`
 
 
-    db.query(sql3, (err,rows, result) => {
+    db.query(sql3, (err, rows, result) => {
         if (err) {
             throw err;
         }
@@ -389,76 +389,6 @@ app.post('/login', (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-// not nessesory code: 
-
-app.get('/createdb', (req, res) => {
-
-    const db = mysql.createConnection({
-
-        host: "localhost",
-        user: "root",
-        password: ""
-
-    })
-    db.connect((err) => {
-        console.log('connected');
-    });
-
-    var sql = `CREATE DATABASE hello_db`;
-
-    db.query(sql, (err, result) => {
-        //    if(error){
-        //      throw error;
-        //    }
-        //    else{
-        res.send('database created');
-        //    }
-
-    })
-
-    console.log("database created");
-
-
-
-});
-
-app.get('/createtable:name', (req, res) => {
-
-    const db = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "hello_db"
-
-    })
-    db.connect((err) => {
-        console.log('connected');
-    })
-
-    var table_name = req.params['name'];
-
-    var sql2 = `CREATE TABLE IF NOT EXISTS   ${table_name}(id INT NOT NULL AUTO_INCREMENT, reason VARCHAR(35),date  VARCHAR(35) , time INT, name VARCHAR(35),phone INT, email VARCHAR(35),message VARCHAR(255),PRIMARY KEY (id) )`;
-
-    db.query(sql2, (err, result) => {
-        if (err) throw err;
-
-        res.send(`table  ${table_name} created`);
-
-    })
-
-    console.log("table created");
-
-
-
-});
 
 
 
